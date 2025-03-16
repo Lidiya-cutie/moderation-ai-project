@@ -1,0 +1,21 @@
+# Настройки OCR
+ocr:
+  engine: "tesseract"  # "tesseract" или "easyocr"
+  language: "rus+eng"  # Распознаваемые языки
+  psm_mode: 3  # Режим сегментации страниц
+  oem_mode: 1  # Выбор движка OCR
+
+# NLP-анализ документов
+nlp:
+  model: "ru_core_news_md"  # Spacy-модель для русского языка
+  stopwords: ["и", "в", "на", "с", "по"]  # Удаляем стоп-слова
+  keywords_threshold: 0.8  # Порог уверенности для ключевых слов
+  text_preprocessing:
+    lower: true
+    remove_punctuation: true
+    remove_numbers: false
+
+# Поиск похожих документов (векторизация)
+similarity_search:
+  embedding_model: "sentence-transformers/all-MiniLM-L6-v2"
+  similarity_threshold: 0.85
