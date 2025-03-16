@@ -8,88 +8,86 @@
 - Авторазметку данных для обучения моделей.
 - Масштабируемость, высокая доступность и интеграция с внешними сервисами.
 
+  >>> Не все компоненты представлены в проекте ввиду коммерческой тайны 
+
 ## 2. Основные компоненты
 
 ### 2.1 Хранение данных
 Данные проекта хранятся в следующей структуре:
+
 ```
-moderation-ai-project/
-│
-├── data/                         
-│   ├── images/                   
-│   ├── models/               
-│   ├── logs/            
-│   ├── results/                
-│
-├── models/                        # Хранятся модели ИИ
-│   ├── yolo/                      # Модели YOLO для анализа изображений
-│   ├── document_analysis/         # Модели для анализа документов
-│   │   ├── document_classifier.pt # Модель классификации документов
-│   │   ├── ocr_model/             # OCR-модель
-│
-├── scripts/                       # Скрипты для работы проекта
-│   ├── training/                  # Скрипты для обучения моделей
-│   ├── auto_annotation/           # Скрипты для авторазметки
-│   ├── document_analysis/         # Анализ документов
-│   │   ├── analyze_documents.py   # Основной скрипт анализа документов
-│   │   ├── ocr_processing.py      # OCR-обработка текста
-│   │   ├── nlp_analysis.py        # NLP-анализ (NER, классификация и т.д.)
-│   ├── utils/                     # Вспомогательные утилиты
-│
-├── config/                        # Конфигурационные файлы
-│   ├── config.yaml                # Основные настройки проекта
-│   ├── comet_config.yaml          # Настройки Comet ML
-│   ├── document_analysis.yaml     # Параметры OCR и NLP
-│
-├── docs/                          # Документация по проекту
-│   ├── README.md                  # Основная документация проекта
-│   ├── API.md                     # Документация API
-│   ├── ARCHITECTURE.md            # Описание архитектуры проекта
-│
-├── tests/                         # Тесты
-│   ├── test_training.py           # Тесты для обучения моделей
-│   ├── test_auto_annotation.py    # Тесты авторазметки
-│   ├── test_document_analysis.py  # Тесты анализа документов
-│
-├── docker/                        # Docker-файлы
-│   ├── Dockerfile                 # Основной Dockerfile
-│   ├── docker-compose.yaml        # Компоновка сервисов
-│
-├── .github/                       # CI/CD и управление репозиторием
-│   ├── workflows/                 # GitHub Actions для CI/CD
-│   │   ├── training_pipeline.yml  # Автоматическое обучение модели
-│   │   ├── tests.yml              # Запуск тестов
-│
-├── requirements.txt               # Список зависимостей Python
-├── setup.py                       # Установка зависимостей
-└── README.md                      # Основное описание проекта
+moderation-ai/
+├── README.md
+├── requirements.txt
+├── scripts/
+│   ├── run_comet_pipeline.sh
+│   ├── run_comet_pipeline.py
+│   ├── notify_bot.py
+│   ├── parse_log_to_excel.py
+│   ├── qwen_vl_utils.py
+│   ├── process_images.py
+│   ├── auto_annotation.py
+├── data/
+│   ├── images/
+│   ├── models/
+│   ├── logs/
+│   ├── results/
+├── docs/
+│   ├── api_documentation.md
+│   ├── user_manual.md
+│   ├── training_videos/
+├── tests/
+│   ├── test_processing.py
+│   ├── test_notifications.py
 ```
 
-## 3. Взаимодействие компонентов
+### Описание файлов и папок
 
-### 3.1 Обучение моделей
-- **YOLO:** Обучение моделей происходит с помощью `scripts/training/run_training.py`, данные загружаются из `data/yolo_apteka/`.
-- **Документный анализ:** Используется `scripts/document_analysis/analyze_documents.py`, включая OCR (`ocr_processing.py`) и NLP-анализ (`nlp_analysis.py`).
+1. **README.md** - Основной файл с описанием проекта, инструкциями по установке, настройке и запуску.
+2. **requirements.txt** - Файл с перечислением всех необходимых Python пакетов для проекта.
+3. **scripts/** - Папка с основными исполняемыми скриптами.
+   - **run_comet_pipeline.sh** - Bash-скрипт для запуска процесса обучения модели.
+   - **run_comet_pipeline.py** - Python скрипт для обучения модели YOLO.
+   - **notify_bot.py** - Скрипт для отправки уведомлений через Telegram.
+   - **parse_log_to_excel.py** - Скрипт для обработки логов и сохранения их в Excel.
+   - **qwen_vl_utils.py** - Вспомогательные функции для работы с моделью Qwen2VL.
+   - **process_images.py** - Скрипт для обработки изображений и анализа их содержания.
+   - **auto_annotation.py** - Скрипт для автоматической разметки изображений с использованием YOLO.
+4. **data/** - Папка для хранения данных.
+   - **images/** - Изображения для анализа.
+   - **models/** - Обученные модели.
+   - **logs/** - Логи выполнения скриптов.
+   - **results/** - Результаты анализа изображений.
+5. **docs/** - Документация проекта.
+   - **api_documentation.md** - Описание API проекта.
+   - **user_manual.md** - Руководство пользователя.
+   - **training_videos/** - Видео инструкции по использованию системы.
+6. **tests/** - Тесты для проверки функциональности проекта.
+   - **test_processing.py** - Тесты для проверки обработки изображений.
+   - **test_notifications.py** - Тесты для проверки системы уведомлений.
 
-### 3.2 Авторазметка
-- `scripts/auto_annotation/auto_annotate.sh` автоматизирует разметку изображений через CVAT.
-- `yolo_to_cvat.py` конвертирует разметку в нужный формат.
+### Пример содержимого некоторых файлов
 
-### 3.3 Анализ документов
-- `ocr_processing.py` распознает текст в документах.
-- `nlp_analysis.py` анализирует текст на предмет соответствия требованиям.
+**README.md**
+```markdown
+# Moderation AI Project
 
-### 3.4 CI/CD и автоматизация
-- **GitHub Actions** запускает тестирование и обучение моделей при обновлениях.
-- **Comet ML** логирует эксперименты и обучение моделей.
-- **Telegram-бот** (`notify_bot.py`) отправляет уведомления о статусе процессов.
+This project aims to automate the moderation of advertising layouts using AI technologies.
 
-## 4. Интеграции
-- **АПР и РуссОнлайн** – взаимодействие через API.
-- **CVAT** – авторазметка изображений.
-- **YOLO, Comet ML** – обучение и логирование экспериментов.
+## Установка
+Clone the repository and install the required packages:
+```bash
+git clone https://github.com/yourusername/moderation-ai.git
+cd moderation-ai
+pip install -r requirements.txt
+```
 
-## 5. Безопасность и масштабируемость
-- **Docker** обеспечивает контейнеризацию.
-- **CI/CD** гарантирует автоматизированную проверку изменений.
-- **Система уведомлений** позволяет оперативно отслеживать процесс работы.
+## Использование
+To start the model training process:
+```bash
+bash scripts/run_comet_pipeline.sh
+```
+
+For more details, refer to the [user manual](docs/README.md).
+```
+
