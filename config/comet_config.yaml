@@ -1,0 +1,6 @@
+comet:
+  api_key: "your_comet_api_key"
+  workspace: "your_workspace"
+  project_name: "moderation-ai-project"
+  auto_log_metrics: true
+  log_training_params: true
