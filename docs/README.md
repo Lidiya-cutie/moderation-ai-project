@@ -125,7 +125,7 @@
      ```
    - Запустите авторазметку:
      ```powershell
-     cvat-cli.exe --server-host 146.185.208.173:8089 --auth mcdis:TeamDeveloper auto-annotate 40 --function-file ./scripts/auto_annotation.py --allow-unmatched-labels --clear-existing
+     cvat-cli.exe --server-host YOUR_SERVER_HOST --auth mcdis:TeamDeveloper auto-annotate 40 --function-file ./scripts/auto_annotation.py --allow-unmatched-labels --clear-existing
      ```
 
 ### Уведомления
