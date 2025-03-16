@@ -4,7 +4,7 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler
 
 BOT_TOKEN = "YOUR_BOT_TOKEN"
-USER_ID = YOUR_USER_ID
+USER_ID = 1631375063
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
