@@ -6,8 +6,9 @@
 2. [Основные компоненты](#2-основные-компоненты)
    - [Хранение данных](#21-хранение-данных)
    - [Описание файлов и папок](#22-описание-файлов-и-папок)
-3. [Пример содержимого файлов](#3-пример-содержимого-файлов)
-4. [Поддержка и обратная связь](#4-поддержка-и-обратная-связь)
+3. [CI/CD и автоматизация](#3-cicd-и-автоматизация)
+4. [Установка и использование](#4-установка-и-использование)
+5. [Поддержка и обратная связь](#5-поддержка-и-обратная-связь)
 
 ---
 
@@ -34,6 +35,7 @@
 moderation-ai/
 ├── README.md
 ├── requirements.txt
+├── setup.py
 ├── scripts/
 │   ├── run_comet_pipeline.sh
 │   ├── run_comet_pipeline.py
@@ -58,6 +60,11 @@ moderation-ai/
 │   ├── test_processing.py
 │   ├── test_notifications.py
 │   ├── README.md
+├── .github/
+│   └── workflows/
+│       ├── generator-generic-ossf-slsa3-publish.yml
+│       ├── python-package-conda.yml
+│       └── python-publish.yml
 ```
 
 ### 2.2 Описание файлов и папок
@@ -68,7 +75,13 @@ moderation-ai/
 2. **requirements.txt**  
    Файл с перечислением всех необходимых Python-пакетов для проекта.
 
-3. **scripts/**  
+3. **setup.py**  
+   Файл для настройки пакета проекта. Включает:
+   - Зависимости (`install_requires`).
+   - Консольные команды для запуска скриптов (`entry_points`).
+   - Метаданные проекта (автор, описание, лицензия).
+
+4. **scripts/**  
    Папка с основными исполняемыми скриптами:
    - **run_comet_pipeline.sh** — Bash-скрипт для запуска процесса обучения модели.
    - **run_comet_pipeline.py** — Python-скрипт для обучения модели YOLO.
@@ -78,53 +91,81 @@ moderation-ai/
    - **process_images.py** — Скрипт для обработки изображений и анализа их содержания.
    - **auto_annotation.py** — Скрипт для автоматической разметки изображений с использованием YOLO.
 
-4. **data/**  
+5. **data/**  
    Папка для хранения данных:
    - **images/** — Изображения для анализа.
    - **models/** — Обученные модели.
    - **logs/** — Логи выполнения скриптов.
    - **results/** — Результаты анализа изображений.
 
-5. **docs/**  
+6. **docs/**  
    Документация проекта:
    - **api_documentation.md** — Описание API проекта.
    - **user_manual.md** — Руководство пользователя.
    - **training_videos/** — Видеоинструкции по использованию системы.
 
-6. **tests/**  
+7. **tests/**  
    Тесты для проверки функциональности проекта:
    - **test_processing.py** — Тесты для проверки обработки изображений.
    - **test_notifications.py** — Тесты для проверки системы уведомлений.
 
----
-
-## 3. Пример содержимого файлов
-
-### **README.md**
-```markdown
-# Moderation AI Project
-
-This project aims to automate the moderation of advertising layouts using AI technologies.
-
-## Установка
-Clone the repository and install the required packages:
-```bash
-git clone https://github.com/yourusername/moderation-ai.git
-cd moderation-ai
-pip install -r requirements.txt
-```
-
-## Использование
-To start the model training process:
-```bash
-bash scripts/run_comet_pipeline.sh
-```
-
-For more details, refer to the [user manual](docs/README.md).
+8. **.github/workflows/**  
+   Папка с конфигурациями GitHub Actions для CI/CD:
+   - **generator-generic-ossf-slsa3-publish.yml** — Конфигурация для публикации пакета с использованием SLSA3.
+   - **python-package-conda.yml** — Конфигурация для сборки и публикации пакета с использованием Conda.
+   - **python-publish.yml** — Конфигурация для публикации Python-пакета.
 
 ---
 
-## 4. Поддержка и обратная связь
+## 3. CI/CD и автоматизация
+
+Проект использует GitHub Actions для автоматизации процессов CI/CD. В папке `.github/workflows/` находятся следующие конфигурации:
+- **generator-generic-ossf-slsa3-publish.yml**: Обеспечивает публикацию пакета с использованием стандарта SLSA3 для повышения безопасности.
+- **python-package-conda.yml**: Автоматизирует сборку и публикацию пакета через Conda.
+- **python-publish.yml**: Автоматизирует публикацию Python-пакета в PyPI.
+
+---
+
+## 4. Установка и использование
+
+### Установка
+
+1. Клонируйте репозиторий:
+   ```bash
+   git clone https://github.com/yourusername/moderation-ai.git
+   cd moderation-ai
+   ```
+
+2. Установите зависимости:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Установите пакет проекта:
+   ```bash
+   python setup.py install
+   ```
+
+### Использование
+
+- Для обучения модели YOLO:
+  ```bash
+  train-yolo
+  ```
+
+- Для запуска авторазметки:
+  ```bash
+  auto-annotate
+  ```
+
+- Для запуска Telegram-бота:
+  ```bash
+  notify-bot
+  ```
+
+---
+
+## 5. Поддержка и обратная связь
 
 Если у вас возникли вопросы, замечания или предложения, свяжитесь со мной:
 - **Email**: lidushehca188@mail.com
@@ -137,6 +178,10 @@ For more details, refer to the [user manual](docs/README.md).
 - **Безопасность**: Убедитесь, что чувствительные данные (например, API-ключи) хранятся в переменных окружения, а не в коде.
 - **Масштабируемость**: Проект разработан с учётом возможности масштабирования для обработки больших объёмов данных.
 - **Логирование**: Все ключевые процессы логируются для упрощения отладки и анализа.
+
+---
+
+Этот обновлённый `README.md` теперь включает информацию о новых компонентах (папка `.github/workflows` и файл `setup.py`) и предоставляет полное описание архитектуры проекта.
 
 ---
 
