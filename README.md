@@ -27,18 +27,22 @@ moderation-ai/
 │   ├── qwen_vl_utils.py
 │   ├── process_images.py
 │   ├── auto_annotation.py
+|   ├── README.md
 ├── data/
 │   ├── images/
 │   ├── models/
 │   ├── logs/
 │   ├── results/
+|   ├── README.md
 ├── docs/
 │   ├── api_documentation.md
 │   ├── user_manual.md
 │   ├── training_videos/
+|   ├── README.md
 ├── tests/
 │   ├── test_processing.py
 │   ├── test_notifications.py
+|   ├── README.md
 ```
 
 ### Описание файлов и папок
@@ -90,4 +94,11 @@ bash scripts/run_comet_pipeline.sh
 
 For more details, refer to the [user manual](docs/README.md).
 ```
+---
 
+## Поддержка и обратная связь
+
+Если у вас возникли вопросызачечания или предложения, свяжитесь со мной:
+- Email: lidushehca188@mail.com
+- Telegram: @lidiya_cutie
+---
