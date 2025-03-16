@@ -132,7 +132,7 @@ moderation-ai/
 
 1. Клонируйте репозиторий:
    ```bash
-   git clone https://github.com/yourusername/moderation-ai.git
+   git clone https://github.com/Lidiya-cutie/moderation-ai-project.git
    cd moderation-ai
    ```
 
