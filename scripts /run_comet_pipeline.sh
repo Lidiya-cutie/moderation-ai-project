@@ -59,21 +59,21 @@ done
 LOG_FILE=$(generate_log_name)
 echo "GPU свободен. Запускаю скрипт..."
 
-sudo COMET_API_KEY="$COMET_API_KEY" nohup /mldata/my_venv/bin/python /mldata/run_comet_pipeline.py > "$LOG_FILE" 2>&1 &
+sudo COMET_API_KEY="$COMET_API_KEY" nohup /path/to/venv/bin/python /path/to/run_comet_pipeline.py > "$LOG_FILE" 2>&1 &
 PROCESS_PID=$!  # Сохраняем PID запущенного процесса
 echo "Скрипт запущен в фоне с PID=$PROCESS_PID. Лог записывается в $LOG_FILE."
 
 echo "Отправляю уведомление о запуске..."
-sudo nohup /mldata/my_venv/bin/python /mldata/notify_bot.py "Обучение началось. Лог: $LOG_FILE" &
+sudo nohup /path/to/venv/bin/python /path/to/notify_bot.py "Обучение началось. Лог: $LOG_FILE" &
 
 wait $PROCESS_PID
 EXIT_CODE=$?
 
 if [ $EXIT_CODE -eq 0 ]; then
-  sudo nohup /mldata/my_venv/bin/python /mldata/notify_bot.py "Обучение завершено успешно! Логи сохранены в $LOG_FILE"
+  sudo nohup /path/to/venv/bin/python /path/to/notify_bot.py "Обучение завершено успешно! Логи сохранены в $LOG_FILE"
   echo "Запускаю обработку логов..."
-  sudo nohup /mldata/my_venv/bin/python /mldata/parse_log_to_excel.py "$LOG_FILE"
-  sudo nohup /mldata/my_venv/bin/python /mldata/notify_bot.py "Логи успешно обработаны и добавлены в Excel."
+  sudo nohup /path/to/venv/bin/python /path/to/parse_log_to_excel.py "$LOG_FILE"
+  sudo nohup /path/to/venv/bin/python /path/to/notify_bot.py "Логи успешно обработаны и добавлены в Excel."
 else
-  sudo nohup /mldata/my_venv/bin/python /mldata/notify_bot.py "Обучение завершено с ошибкой (код $EXIT_CODE). Логи: $LOG_FILE"
+  sudo nohup /path/to/venv/bin/python /path/to/notify_bot.py "Обучение завершено с ошибкой (код $EXIT_CODE). Логи: $LOG_FILE"
 fi
