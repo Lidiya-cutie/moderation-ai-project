@@ -1,0 +1,43 @@
+# Основные настройки проекта
+project:
+  name: "Moderation AI Project"
+  version: "2.0.0"
+  author: "lidiya_cutie"
+
+# Пути к данным
+data:
+  raw_data_path: "data/raw/"
+  processed_data_path: "data/processed/"
+  yolo_data_path: "data/yolo_apteka/"
+  model_path: "models/yolo/yolo_apteka.pt"
+
+# Настройки YOLO
+yolo:
+  model: "yolov8m"  # Выбор модели (s, m, l, x)
+  epochs: 50
+  batch_size: 16
+  img_size: 640
+  iou_threshold: 0.5
+  confidence_threshold: 0.25
+  device: "cuda"  # "cpu" или "cuda"
+
+# CVAT для авторазметки
+cvat:
+  api_url: "http://localhost:8080/api/v1"
+  username: "admin"
+  password: "yourpassword"
+
+# Telegram-бот для уведомлений
+telegram:
+  bot_token: "your_bot_token"
+  chat_id: "your_chat_id"
+
+# Логирование
+logging:
+  level: "INFO"
+  log_file: "logs/project.log"
+
+# Docker-настройки
+docker:
+  gpu_support: true
+  container_name: "moderation-ai"
