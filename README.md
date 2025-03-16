@@ -121,7 +121,6 @@ bash scripts/run_comet_pipeline.sh
 ```
 
 For more details, refer to the [user manual](docs/README.md).
-```
 
 ---
 
