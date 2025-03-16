@@ -93,7 +93,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     log_file_path = sys.argv[1]
-    output_excel_path = "/mldata/results_summary.xlsx" # В вашем случае путь будет отличаться
+    output_excel_path = "/path/to/results_summary.xlsx" # 
 
     training_data = parse_log_file(log_file_path)
     save_to_excel(training_data, output_excel_path)
