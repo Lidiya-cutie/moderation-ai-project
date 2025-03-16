@@ -41,3 +41,14 @@ logging:
 docker:
   gpu_support: true
   container_name: "moderation-ai"
+  scale: "auto"  # Автоматическое масштабирование, если используется Kubernetes
+  replicas: 3  # Число реплик в контейнере для масштабируемости
+
+# Интеграции
+integrations:
+  apr:
+    api_url: "http://localhost:5000/api"  # Пример URL для АПР
+    api_key: "your_apr_api_key"
+  russ_online:
+    api_url: "http://russonline.com/api"  # Пример URL для РуссОнлайн
+    api_key: "your_russ_online_api_key"
