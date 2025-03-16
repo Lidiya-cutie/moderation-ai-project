@@ -1,0 +1,27 @@
+# Основные библиотеки для работы с YOLO и CV
+torch>=2.0.0
+torchvision>=0.15.0
+ultralytics>=8.0.0  # YOLOv8
+opencv-python>=4.5.0
+numpy>=1.21.0
+
+# Логирование и отслеживание экспериментов
+comet-ml>=3.31.0
+
+# Работа с CVAT и обработка аннотаций
+requests>=2.26.0
+lxml>=4.9.1
+xmltodict>=0.13.0
+
+# Telegram-уведомления
+python-telegram-bot>=20.0
+
+# Обработка данных и работа с файлами
+pandas>=1.3.0
+openpyxl>=3.0.9
+
+# Вспомогательные библиотеки
+PyYAML>=6.0
+tqdm>=4.64.0
+scikit-learn>=1.0.0
+matplotlib>=3.5.0
