@@ -134,11 +134,11 @@ scripts/
   Запуск авторазметки выполняется через командную строку с использованием `cvat-cli.exe`. Пример команды:
   ```powershell
   # Установите логин и пароль для доступа к CVAT
-  $login = "admin"
-  $plainPass = "PWEyDulkPDDXD7rm"
+  $login = "YOUR_LOGIN"
+  $plainPass = "YOUR_PASSWORD"
 
   # Запуск авторазметки
-  C:\Users\Lida\AppData\Roaming\Python\Python39\Scripts\cvat-cli.exe --server-host 146.185.208.173:8089 --auth mcdis:TeamDeveloper auto-annotate 40 --function-file ./auto_annotation.py --allow-unmatched-labels --clear-existing
+  C:\Users\Lida\AppData\Roaming\Python\Python39\Scripts\cvat-cli.exe --server-host "YOUR_SERVER_HOST" --auth mcdis:TeamDeveloper auto-annotate "NUMBER_TASK" --function-file ./auto_annotation.py --allow-unmatched-labels --clear-existing
   ```
 
 - **Зависимости**:
