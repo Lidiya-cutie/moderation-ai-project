@@ -6,8 +6,8 @@ from comet_ml import Experiment
 from ultralytics import YOLO
 
 # Базовый путь к проекту
-base_path = "/runs" # необходимо указать путь до места, где хранится проект
-data_path = "/data.yaml" # необходимо указать путь до места
+base_path = "/path/to/runs" # необходимо указать путь до места, где хранится проект
+data_path = "/path/to/data.yaml" # необходимо указать путь до места
 
 # Списки гиперпараметров
 optimizers = ['SGD', 'SGD']
@@ -17,7 +17,7 @@ conf_thresholds = [0.2]  #, 0.2 , 0.4
 batches = [24]
 
 # Начальный путь к весам
-weights_path = "/best.pt" # необходимо указать путь до места, где лежат веса
+weights_path = "/path/to/best.pt" # необходимо указать путь до места, где лежат веса
 
 # Номер итерации
 iteration = 1
