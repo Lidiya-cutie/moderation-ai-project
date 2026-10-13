@@ -44,11 +44,8 @@ docker:
   scale: "auto"  # Автоматическое масштабирование, если используется Kubernetes
   replicas: 3  # Число реплик в контейнере для масштабируемости
 
-# Интеграции
+# Интеграции (пример: внешняя система модерации заказчика)
 integrations:
-  apr:
-    api_url: "http://localhost:5000/api"  # Пример URL для внешняя система
-    api_key: "your_apr_api_key"
-  russ_online:
-    api_url: "http://client-system.example.com/api"  # Пример URL для внешняя система
-    api_key: "your_russ_online_api_key"
+  client_system:
+    api_url: "http://localhost:5000/api"
+    api_key: "your_client_api_key"
